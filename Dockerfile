@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY . .
 
+COPY src/main/resources/application.properties.example src/main/resources/application.properties
+
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
