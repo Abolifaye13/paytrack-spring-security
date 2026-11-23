@@ -1,0 +1,3 @@
+
+ALTER TABLE invoices
+ADD COLUMN released_amount DECIMAL(12,2) NOT NULL DEFAULT 0.00;
