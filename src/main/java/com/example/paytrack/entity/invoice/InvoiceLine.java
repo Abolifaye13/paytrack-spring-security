@@ -24,6 +24,10 @@ public class InvoiceLine {
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal lineTotal;
 
+    // GST rate for this individual invoice line (e.g. 5, 12 or 18).
+    @Column(nullable = false, precision = 5, scale = 2)
+    private BigDecimal gstRate;
+
     @Column(nullable = false, length = 3)
     private String currency;
 
@@ -68,6 +72,14 @@ public class InvoiceLine {
 
     public void setLineTotal(BigDecimal lineTotal) {
         this.lineTotal = lineTotal;
+    }
+
+    public BigDecimal getGstRate() {
+        return gstRate;
+    }
+
+    public void setGstRate(BigDecimal gstRate) {
+        this.gstRate = gstRate;
     }
 
     public String getCurrency() {

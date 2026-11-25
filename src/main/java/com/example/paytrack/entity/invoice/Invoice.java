@@ -23,6 +23,24 @@ public class Invoice {
     private BigDecimal subtotal;
 
     @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal cgstAmount = BigDecimal.ZERO;
+
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal sgstAmount = BigDecimal.ZERO;
+
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal igstAmount = BigDecimal.ZERO;
+
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal taxAmount = BigDecimal.ZERO;
+
+    @Column(name = "supplier_state", length = 100)
+    private String supplierState;
+
+    @Column(name = "customer_state", length = 100)
+    private String customerState;
+
+    @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal retentionPercentage;
 
     @Column(nullable = false, precision = 12, scale = 2)
@@ -54,7 +72,6 @@ public class Invoice {
     public Invoice() {
     }
 
-    // Automatically set creation date and time
     @PrePersist
     protected void onCreate() {
         if (createdAt == null) {
@@ -80,6 +97,54 @@ public class Invoice {
 
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public BigDecimal getCgstAmount() {
+        return cgstAmount;
+    }
+
+    public void setCgstAmount(BigDecimal cgstAmount) {
+        this.cgstAmount = cgstAmount;
+    }
+
+    public BigDecimal getSgstAmount() {
+        return sgstAmount;
+    }
+
+    public void setSgstAmount(BigDecimal sgstAmount) {
+        this.sgstAmount = sgstAmount;
+    }
+
+    public BigDecimal getIgstAmount() {
+        return igstAmount;
+    }
+
+    public void setIgstAmount(BigDecimal igstAmount) {
+        this.igstAmount = igstAmount;
+    }
+
+    public BigDecimal getTaxAmount() {
+        return taxAmount;
+    }
+
+    public void setTaxAmount(BigDecimal taxAmount) {
+        this.taxAmount = taxAmount;
+    }
+
+    public String getSupplierState() {
+        return supplierState;
+    }
+
+    public void setSupplierState(String supplierState) {
+        this.supplierState = supplierState;
+    }
+
+    public String getCustomerState() {
+        return customerState;
+    }
+
+    public void setCustomerState(String customerState) {
+        this.customerState = customerState;
     }
 
     public BigDecimal getRetentionPercentage() {
@@ -154,7 +219,6 @@ public class Invoice {
         this.milestone = milestone;
     }
 
-    // Calculate remaining retention amount
     public BigDecimal getRemainingHeldAmount() {
         return retainedAmount.subtract(releasedAmount);
     }
